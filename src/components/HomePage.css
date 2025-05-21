@@ -1,0 +1,21 @@
+.logo-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 25px 0 4px 0 ;
+}
+
+.logo {
+  height: 80px;
+  background-color: #1d3557;
+  border-radius: 32px;
+  padding: 6px;
+}
+
+.placify-title {
+  color: #4F46E5;
+  font-size: 2rem;
+  margin: 0;
+  font-weight: bold;
+  
+}

@@ -1,0 +1,177 @@
+/* General Reset and Fonts */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f4f6f8;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* App container */
+.App {
+  padding: 0 10px;
+}
+
+/* Container */
+.app-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+/* Title */
+.app-title {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 40px;
+  color: #2c3e50;
+}
+
+/* Flexbox section for code + chatbot */
+.section {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin: 25px;
+  flex-wrap: wrap;
+}
+
+/* Panels */
+.left-panel,
+.right-panel {
+ flex: 1 1 0;
+  background: #fff;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  min-width: 300px;
+   max-width: 600px;
+  border: 2px dashed #000; /* Debugging border */
+    
+
+}
+
+/* Resume Evaluator Section */
+.resume-section {
+  margin-top: 40px;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.resume-section h2 {
+  font-size: 1.8rem;
+  color: #34495e;
+  margin-bottom: 20px;
+}
+
+.resume-section input[type="file"] {
+  margin: 10px 0;
+  padding: 10px;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 400px;
+  cursor: pointer;
+  background-color: #f9f9f9;
+}
+
+.resume-section button {
+  margin-top: 15px;
+  background-color: #3498db;
+  color: white;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.resume-section button:hover {
+  background-color: #2980b9;
+}
+
+.resume-section p {
+  margin-top: 20px;
+  font-size: 1.1rem;
+  color: #2c3e50;
+}
+
+/* 🌐 Responsive Layout for Smaller Screens */
+@media (max-width: 768px) {
+  .section {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .left-panel,
+  .right-panel {
+    flex: 1 1 100%;
+    min-width: 100%;
+  }
+
+  .app-title {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+  }
+
+  .resume-section {
+    padding: 20px;
+    margin: 20px 0;
+  }
+
+  .resume-section input[type="file"] {
+    max-width: 100%;
+  }
+}
+
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* This pushes left and right apart */
+  background-color: #4F46E5;
+  padding: 10px 24px;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin: 16px 4px 0 4px;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 15px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.navbar a:hover,
+.navbar a.active {
+  background-color: #2980b9;
+}
+
+
+.resume-flex-row {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 32px;
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .resume-flex-row {
+    flex-direction: column;
+    align-items: center;
+  }
+}
