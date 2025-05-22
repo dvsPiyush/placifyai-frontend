@@ -35,7 +35,7 @@ const Login = ({ onLoginSuccess, setOtpEmail }) => {
     setError('');
   
     try {
-      const url = isSignup ? 'http://localhost:5000/api/signup' : 'http://localhost:5000/api/login';
+      const url = isSignup ? `${process.env.REACT_APP_API_URL}/api/signup` : `${process.env.REACT_APP_API_URL}/api/login`;
       const res = await axios.post(url, formData);
   
       console.log('Response:', res.data);
@@ -74,7 +74,7 @@ const Login = ({ onLoginSuccess, setOtpEmail }) => {
   };
   const handleVerifyOtp = async () => {
     try {
-      const res = await axios.post('http://localhost:5000/api/verify-otp', {
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/verify-otp`, {
         email: formData.username,
         otp: otp,
       });
@@ -98,7 +98,7 @@ const Login = ({ onLoginSuccess, setOtpEmail }) => {
 
   const handleResendOtp = async () => {
     try {
-      const res = await axios.post('http://localhost:5000/api/resend-otp', {
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/resend-otp`, {
         email: formData.username, // Use formData.username directly
       }, {
         headers: {

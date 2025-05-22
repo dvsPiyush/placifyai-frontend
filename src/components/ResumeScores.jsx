@@ -6,7 +6,7 @@ const ResumeProgress = ({ username }) => {
 
   useEffect(() => {
     if (!username) return;
-    axios.post('http://localhost:5000/resume-scores', { username })
+    axios.post(`${process.env.REACT_APP_API_URL}/resume-scores`, { username })
       .then(res => setScores(res.data.scores || []))
       .catch(() => setScores([]));
   }, [username]);

@@ -20,7 +20,7 @@ function CodeEvaluator({ setExternalMessage }) {
     const token = localStorage.getItem("token");
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/evaluate",
+        `${process.env.REACT_APP_API_URL}/api/evaluate`,
         { code, language },
         {
           headers: {
@@ -32,7 +32,7 @@ function CodeEvaluator({ setExternalMessage }) {
       setTime(response.data.time_complexity);
       // Get suggestion from chatbot
       const suggestionRes = await axios.post(
-        "http://localhost:5000/chatbot",
+        `${process.env.REACT_APP_API_URL}/chatbot`,
         { message: `Suggest improvements for this code:\n${code}\nOutput:\n${response.data.output}` }
       );
       if (setExternalMessage) {

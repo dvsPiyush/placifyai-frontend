@@ -20,7 +20,7 @@ const SystemAsks = ({ setExternalMessage }) => {
       setOutput('');
       setSuggestion('');
       try {
-        const res = await axios.get(`http://localhost:5000/api/get-random-question?level=${level}`);
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/get-random-question?level=${level}`);
         setQuestion(res.data);
       } catch (err) {
         setQuestion({ question: "No question found for this level." });
@@ -33,7 +33,7 @@ const SystemAsks = ({ setExternalMessage }) => {
     try {
       const token = localStorage.getItem('token');
       const res = await axios.post(
-        'http://localhost:5000/chatbot',
+        `${process.env.REACT_APP_API_URL}/chatbot`,
         { message: `Suggest improvements for this code:\n${code}\nOutput:\n${output}` },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -53,7 +53,7 @@ const SystemAsks = ({ setExternalMessage }) => {
     try {
       const token = localStorage.getItem('token');
       const res = await axios.post(
-        'http://localhost:5000/api/evaluate',
+        `${process.env.REACT_APP_API_URL}/api/evaluate`,
         { code, language: 'python' },
         { headers: { Authorization: `Bearer ${token}` } }
       );

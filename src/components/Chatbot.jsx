@@ -24,7 +24,7 @@ const Chatbot = ({ externalMessage }) => {
         const token = localStorage.getItem('token');
 
         const res = await axios.post(
-          'http://localhost:5000/chat-history',
+          `${process.env.REACT_APP_API_URL}/chat-history`,
           { username },
           {
             headers: {
@@ -66,7 +66,7 @@ useEffect(() => {
       const token = localStorage.getItem('token');
 
       const res = await axios.post(
-        'http://localhost:5000/chatbot',
+        `${process.env.REACT_APP_API_URL}/chatbot`,
         {
           username,
           message,
@@ -95,7 +95,7 @@ const deleteAllChats = async () => {
   try {
     const token = localStorage.getItem('token');
     await axios.post(
-      'http://localhost:5000/chat-history/delete',
+      `${process.env.REACT_APP_API_URL}/chat-history/delete`,
       { username },
       {
         headers: {

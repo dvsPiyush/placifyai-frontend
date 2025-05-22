@@ -10,7 +10,7 @@ function OTPVerification({ email, onVerified }) { // Use email prop
   const handleVerify = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/verify-otp', {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/verify-otp`, {
         email, // Use the email prop
         otp,
       });

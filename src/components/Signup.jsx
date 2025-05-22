@@ -14,7 +14,7 @@ function Signup() {
   const handleSignUp = async e => {
     e.preventDefault();
     try {
-        const res = await axios.post('http://localhost:5000/api/signup', form, {
+        const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/signup`, form, {
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -28,7 +28,7 @@ function Signup() {
 
   const handleVerifyOtp = async () => {
     try {
-      const res = await axios.post('http://localhost:5000/api/verify-otp', {
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/verify-otp`, {
         email: form.username, // Ensure this matches the backend's expected field
         otp: otp,
       }, {
@@ -49,7 +49,7 @@ function Signup() {
   };
   const handleResendOtp = async () => {
     try {
-      const res = await axios.post('http://localhost:5000/api/resend-otp', {
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/resend-otp`, {
         email: form.username, // Ensure this matches the backend's expected field
       }, {
         headers: {

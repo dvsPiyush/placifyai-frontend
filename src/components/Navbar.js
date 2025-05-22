@@ -17,7 +17,7 @@ const email = localStorage.getItem('email') || username; // fallback if only use
 const handleDeleteAccount = async () => {
     if (!window.confirm("Are you sure you want to delete your account? This cannot be undone.")) return;
     try {
-      await fetch('http://localhost:5000/delete-account', {
+      await fetch(`${process.env.REACT_APP_API_URL}/delete-account`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, email })

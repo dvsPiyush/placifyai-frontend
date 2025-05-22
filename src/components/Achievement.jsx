@@ -6,7 +6,7 @@ const Badges = ({ username }) => {
 
   useEffect(() => {
     if (!username) return;
-    axios.post('http://localhost:5000/api/get-user', { username })
+    axios.post(`${process.env.REACT_APP_API_URL}/api/get-user`, { username })
       .then(res => setBadges(res.data.badges || []))
       .catch(() => setBadges([]));
   }, [username]);
