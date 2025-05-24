@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-
+import Favicon from "react-favicon";
 import Chatbot from './components/Chatbot';
 import CodeEvaluator from './components/CodeEvaluator';
 import ResumeEvaluator from './components/ResumeEvaluator';
@@ -21,7 +21,8 @@ function App() {
   const [isOtpPending, setIsOtpPending] = useState(false);
   const [otpEmail, setOtpEmail] = useState('');
   const [externalMessage, setExternalMessage] = useState(null);
-
+  const [loading, setLoading] = useState(false);
+  
   useEffect(() => {
     const token = localStorage.getItem('token');
     const isActive = localStorage.getItem('is_active');
@@ -44,6 +45,7 @@ function App() {
       setIsOtpPending(true);
     }
   };
+ 
 
   const logout = () => {
     localStorage.clear();
@@ -54,7 +56,8 @@ function App() {
 
   return (
     <Router>
-      <div>
+       <Favicon url={loading ? "/public/Bean Eater@1x-0.8s-209px-209px.svg" : "/Placify.svg"} />
+      <div>   
         <Routes>
           <Route
             path="/"
