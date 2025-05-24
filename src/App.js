@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Favicon from "react-favicon";
 import Chatbot from './components/Chatbot';
 import CodeEvaluator from './components/CodeEvaluator';
 import ResumeEvaluator from './components/ResumeEvaluator';
@@ -20,7 +19,7 @@ function App() {
   const [isOtpPending, setIsOtpPending] = useState(false);
   const [otpEmail, setOtpEmail] = useState('');
   const [externalMessage, setExternalMessage] = useState(null);
-  const [loading, setLoading] = useState(false);
+
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -54,24 +53,23 @@ function App() {
 
   return (
     <Router>
-      <Favicon url={loading ? "/Bean Eater@1x-0.8s-209px-209px.svg" : "/Placify.svg"} />
       <div>
         <Routes>
           <Route
             path="/"
             element={
               !user ? (
-                <Login onLoginSuccess={handleLoginSuccess} setOtpEmail={setOtpEmail} setLoading={setLoading} />
+                <Login onLoginSuccess={handleLoginSuccess} setOtpEmail={setOtpEmail} />
               ) : (
                 <>
                   <Navbar onLogout={logout} />
                   <HomePage />
                   <div className="section">
                     <div className="left-panel" id="code-evaluator">
-                      <CodeEvaluator setExternalMessage={setExternalMessage} setLoading={setLoading} />
+                      <CodeEvaluator setExternalMessage={setExternalMessage}/>
                     </div>
                     <div className="right-panel" id="chatbot">
-                      <Chatbot externalMessage={externalMessage} setLoading={setLoading} />
+                      <Chatbot externalMessage={externalMessage}/>
                     </div>
                   </div>
                   <div className="resume-section" id="resume-evaluator">
@@ -79,7 +77,7 @@ function App() {
                     <div className="resume-flex-row">
                       <AdBanner width="120px" height="350px" />
                       <div style={{ flex: 1, minWidth: 0 }}>
-                        <ResumeEvaluator setLoading={setLoading} />
+                        <ResumeEvaluator/>
                       </div>
                       <AdBanner width="120px" height="350px" />
                     </div>
@@ -89,7 +87,7 @@ function App() {
             }
           />
 
-          <Route path="api/signup" element={<Signup setOtpEmail={setOtpEmail} setLoading={setLoading} />} />
+          <Route path="api/signup" element={<Signup setOtpEmail={setOtpEmail}/>} />
 
           <Route
             path="api/verify-otp"
@@ -102,7 +100,7 @@ function App() {
                     setUser(true);
                     setIsOtpPending(false);
                   }}
-                  setLoading={setLoading}
+
                 />
               ) : (
                 <Navigate to="/" />
@@ -127,14 +125,14 @@ function App() {
                 <Navbar onLogout={logout} />
                 <div className="section">
                   <div className="left-panel" id="code-evaluator">
-                    <CodeEvaluator setExternalMessage={setExternalMessage} setLoading={setLoading} />
+                    <CodeEvaluator setExternalMessage={setExternalMessage} />
                   </div>
                   <div className="right-panel" id="chatbot">
-                    <Chatbot externalMessage={externalMessage} setLoading={setLoading} />
+                    <Chatbot externalMessage={externalMessage}/>
                   </div>
                 </div>
                 <div className="resume-section" id="resume-evaluator">
-                  <ResumeEvaluator setLoading={setLoading} />
+                  <ResumeEvaluator/>
                   <AdBanner width="100%" height="90px" />
                 </div>
               </ProtectedRoute>
@@ -146,7 +144,7 @@ function App() {
             element={
               <ProtectedRoute>
                 <Navbar onLogout={logout} />
-                <SystemAsks setLoading={setLoading} />
+                <SystemAsks/>
               </ProtectedRoute>
             }
           />
