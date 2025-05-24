@@ -15,14 +15,13 @@ import ProtectedRoute from './components/ProtectedRoute';
 import './App.css';
 import AdBanner from './components/AdBanner';
 
-
 function App() {
   const [user, setUser] = useState(false);
   const [isOtpPending, setIsOtpPending] = useState(false);
   const [otpEmail, setOtpEmail] = useState('');
   const [externalMessage, setExternalMessage] = useState(null);
   const [loading, setLoading] = useState(false);
-  
+
   useEffect(() => {
     const token = localStorage.getItem('token');
     const isActive = localStorage.getItem('is_active');
@@ -45,7 +44,6 @@ function App() {
       setIsOtpPending(true);
     }
   };
- 
 
   const logout = () => {
     localStorage.clear();
@@ -56,42 +54,42 @@ function App() {
 
   return (
     <Router>
-       <Favicon url={loading ? "/public/Bean Eater@1x-0.8s-209px-209px.svg" : "/Placify.svg"} />
-      <div>   
+      <Favicon url={loading ? "/Bean Eater@1x-0.8s-209px-209px.svg" : "/Placify.svg"} />
+      <div>
         <Routes>
           <Route
             path="/"
             element={
               !user ? (
-                <Login onLoginSuccess={handleLoginSuccess} setOtpEmail={setOtpEmail} />
+                <Login onLoginSuccess={handleLoginSuccess} setOtpEmail={setOtpEmail} setLoading={setLoading} />
               ) : (
                 <>
                   <Navbar onLogout={logout} />
                   <HomePage />
                   <div className="section">
                     <div className="left-panel" id="code-evaluator">
-                      <CodeEvaluator setExternalMessage={setExternalMessage}/>
+                      <CodeEvaluator setExternalMessage={setExternalMessage} setLoading={setLoading} />
                     </div>
                     <div className="right-panel" id="chatbot">
-                      <Chatbot externalMessage={externalMessage} />                    </div>
+                      <Chatbot externalMessage={externalMessage} setLoading={setLoading} />
+                    </div>
                   </div>
-  <div className="resume-section" id="resume-evaluator">
-        <AdBanner />
-
-  <div className="resume-flex-row">
-    <AdBanner width="120px" height="350px" />
-    <div style={{ flex: 1, minWidth: 0 }}>
-      <ResumeEvaluator />
-    </div>
-    <AdBanner width="120px" height="350px" />
-  </div>
-</div>
+                  <div className="resume-section" id="resume-evaluator">
+                    <AdBanner />
+                    <div className="resume-flex-row">
+                      <AdBanner width="120px" height="350px" />
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <ResumeEvaluator setLoading={setLoading} />
+                      </div>
+                      <AdBanner width="120px" height="350px" />
+                    </div>
+                  </div>
                 </>
               )
             }
           />
 
-          <Route path="api/signup" element={<Signup setOtpEmail={setOtpEmail} />} />
+          <Route path="api/signup" element={<Signup setOtpEmail={setOtpEmail} setLoading={setLoading} />} />
 
           <Route
             path="api/verify-otp"
@@ -104,6 +102,7 @@ function App() {
                     setUser(true);
                     setIsOtpPending(false);
                   }}
+                  setLoading={setLoading}
                 />
               ) : (
                 <Navigate to="/" />
@@ -121,7 +120,6 @@ function App() {
             }
           />
 
-          {/* You can remove this route if you only want the layout on the homepage */}
           <Route
             path="/code-editor"
             element={
@@ -129,14 +127,14 @@ function App() {
                 <Navbar onLogout={logout} />
                 <div className="section">
                   <div className="left-panel" id="code-evaluator">
-    <CodeEvaluator setExternalMessage={setExternalMessage}/>
+                    <CodeEvaluator setExternalMessage={setExternalMessage} setLoading={setLoading} />
                   </div>
                   <div className="right-panel" id="chatbot">
-    <Chatbot externalMessage={externalMessage} />
+                    <Chatbot externalMessage={externalMessage} setLoading={setLoading} />
                   </div>
                 </div>
                 <div className="resume-section" id="resume-evaluator">
-                  <ResumeEvaluator />
+                  <ResumeEvaluator setLoading={setLoading} />
                   <AdBanner width="100%" height="90px" />
                 </div>
               </ProtectedRoute>
@@ -148,7 +146,7 @@ function App() {
             element={
               <ProtectedRoute>
                 <Navbar onLogout={logout} />
-                <SystemAsks />
+                <SystemAsks setLoading={setLoading} />
               </ProtectedRoute>
             }
           />
